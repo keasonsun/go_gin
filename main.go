@@ -1,16 +1,26 @@
 package main
 
-import "github.com/gin-gonic/gin"
-
-const port = ":9090"
+import (
+	"net/http"
+	"text/template"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/hello", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "hello world",
-		})
-	})
+	http.HandleFunc(
+		"/hello",
+		func(w http.ResponseWriter, r *http.Request) {
+			//解析模板
+			t, err2 := template.ParseFiles("./tmpl/hello.tmpl")
+			//渲染模板
+			if err2 != nil {
+				panic(err2)
+			}
 
-	r.Run()
+			t.Execute(w, "你好这是我的第一个go模板")
+
+		})
+	err := http.ListenAndServe(":9000", nil)
+	if err != nil {
+		panic(err)
+	}
 }

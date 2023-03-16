@@ -1,26 +1,16 @@
 package main
 
-// import (
-// 	"fmt"
-// 	"net/http"
-// )
+// import "github.com/gin-gonic/gin"
 
 // const port = ":9090"
 
 // func main() {
-// 	//使用go提供的原生API开启web服务
-// 	http.HandleFunc("/hello", helloWorld)
-// 	err := http.ListenAndServe(port, nil)
-// 	if err != nil {
-// 		panic(err)
-// 	}
+// 	r := gin.Default()
+// 	r.GET("/hello", func(c *gin.Context) {
+// 		c.JSON(200, gin.H{
+// 			"message": "hello world",
+// 		})
+// 	})
 
-// }
-
-// func helloWorld(respW http.ResponseWriter, req *http.Request) {
-// 	n, err := fmt.Fprint(respW, "hello world")
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	fmt.Printf("n: %v\n", n)
+// 	r.Run()
 // }
